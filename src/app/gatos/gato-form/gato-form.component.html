@@ -1,0 +1,68 @@
+<div class="container col-6 card p-4 m-auto">
+  <form [formGroup]="gatoForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" formControlName="nombre"
+        [ngClass]="validClasses(nombre, 'is-valid', 'is-invalid')">
+      <span class="invalid-feedback" *ngIf="nombre.errors?.['required']">El nombre es
+        obligatorio
+      </span>
+    </div>
+
+    <div class="mb-3">
+      <label for="edad" class="form-label">Edad</label>
+      <input type="text" class="form-control" id="edad" name="edad" formControlName="edad"
+        [ngClass]="validClasses(edad, 'is-valid', 'is-invalid')">
+      <span class="invalid-feedback" *ngIf="edad.errors?.['required']">La edad es un campo
+        obligatorio
+      </span>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="castrado" name="castrado" formControlName="castrado">
+      <label class="form-check-label" for="castrado">Castrado</label>
+    </div>
+
+    <div class="mb-3">
+      <label for="color" class="form-label">Color</label>
+      <input type="text" class="form-control" id="color" name="color" formControlName="color"
+        [ngClass]="validClasses(color, 'is-valid', 'is-invalid')">
+      <span class="invalid-feedback" *ngIf="color.errors?.['required']">El color es un campo
+        obligatorio
+      </span>
+    </div>
+
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción</label>
+      <textarea class="form-control" id="descripcion" name="descripcion" rows="3" formControlName="descripcion"
+        [ngClass]="validClasses(descripcion, 'is-valid', 'is-invalid')"></textarea>
+      <span class="invalid-feedback" *ngIf="descripcion.errors?.['required']">La edad es un campo
+        obligatorio
+      </span>
+    </div>
+
+    <div class="mb-3">
+      <label for="personalidad" class="form-label">Personalidad</label>
+      <select class="form-select" id="personalidad" name="personalidad" formControlName="personalidad"
+        [ngClass]="validClasses(personalidad, 'is-valid', 'is-invalid')">
+        <option value="solo">Solo</option>
+        <option value="gatos">Gatos</option>
+        <option value="perros">Perros</option>
+      </select>
+      <span class="invalid-feedback" *ngIf="personalidad.errors?.['required']">Debes elegir una opción
+      </span>
+    </div>
+
+    <div class="mb-3">
+      <label for="imagen" class="form-label">Imagen (Máximo 10 imágenes)</label>
+      <input type="file" class="form-control" id="imagen" formArrayName="imagen" name="imagen[]" accept="image/*"
+        multiple [ngClass]="validClasses(imagen, 'is-valid', 'is-invalid')" #fileimage
+        (change)="changeImage(fileimage)">
+      <span class="invalid-feedback" *ngIf="imagen.errors?.['required']">Es obligatorio subir imagenes
+      </span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2" [disabled]="!gatoForm.valid">Crear</button>
+  </form>
+
+</div>
