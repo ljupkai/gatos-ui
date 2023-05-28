@@ -1,5 +1,5 @@
 export interface Gato {
-  id: string;
+  _id: string;
   nombre: string;
   edad: string;
   castrado: Boolean;

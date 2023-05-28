@@ -6,12 +6,13 @@
   <div class="col">
     <div class="card shadow-sm">
       <img class="card-img-top" style="object-fit:cover " height="200" [src]="firstImage">
-      <title>{{gatoItem.nombre}}</title>
+      <title> {{gatoItem.nombre }}</title>
       <div class="card-body">
-        <p class="card-text">{{ gatoItem.nombre }}</p>
+        <p class="card-text">{{gatoItem.nombre }}</p>
         <div class="d-flex justify-content-between align-items-center">
           <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+            <a [routerLink]="['/gatos', gatoItem._id]" type="button"
+              class="btn btn-sm btn-outline-secondary stretched-link">View</a>
             <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
           </div>
           <small class="text-body-secondary"></small>

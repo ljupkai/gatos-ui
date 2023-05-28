@@ -20,14 +20,15 @@ export class GatosListaComponent implements OnInit {
   ngOnInit(): void {
     this.gatosService.getGatos().subscribe((gatos) => {
       this.gatos = gatos
-      this.addAbsoluteImageUrls();
+      console.log(gatos)
+      // this.addAbsoluteImageUrls();
     })
   }
-  addAbsoluteImageUrls(): void {
-    const serverBaseUrl = 'http://localhost:3000';
-    this.gatos.forEach((gato) => {
-      gato.absoluteImageUrl = gato.imagen.map((imageUrl) => serverBaseUrl + imageUrl);
-    });
-    this.gatos.forEach(gato => gato.absoluteImageUrl.forEach(g => g) )
-  }
+  // addAbsoluteImageUrls(): void {
+  //   const serverBaseUrl = 'http://localhost:3000';
+  //   this.gatos.forEach((gato) => {
+  //     gato.absoluteImageUrl = gato.imagen.map((imageUrl) => serverBaseUrl + imageUrl);
+  //   });
+  //   this.gatos.forEach(gato => gato.absoluteImageUrl.forEach(g => g) )
+  // }
 }

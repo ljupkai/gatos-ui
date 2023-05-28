@@ -1,0 +1,62 @@
+<div class="mt-4" *ngIf="gato">
+
+
+  <div class="container">
+    <h1>Conoce a {{ gato.nombre }}</h1>
+    <hr>
+
+    <!-- Carousel -->
+
+    <!-- Cat Information -->
+    <div class="row">
+
+      <div class="col-md-6">
+        <div id="cat-gallery" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-bs-target="#cat-gallery" *ngFor="let img of gato.imagen; let i = index" [attr.data-bs-slide-to]="i"
+              [class.active]="i === 0"></li>
+          </ol>
+
+          <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="let img of gato.imagen; let i = index" [class.active]="i === 0">
+              <div class="carousel-image-container">
+
+                <img [src]="img" alt="Cat Image" class="carousel-image" height="300">
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <a class="carousel-control-prev" href="#cat-gallery" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#cat-gallery" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- <div class="col-md-3">
+        <p><strong>Spayed:</strong> Yes</p>
+        <p><strong>Personality:</strong> Se lleva bien con otros gatos</p>
+      </div> -->
+      <div class="col-md-6">
+        <p>
+          {{gato.descripcion}}
+        </p>
+        <button class="btn btn-primary">¡Adopta a {{gato.nombre}}!</button>
+      </div>
+    </div>
+
+
+
+
+  </div>
+  <div class="mt-3">
+    <button type="button" class="btn btn-info m-4" (click)="goBack()">
+      Go back
+    </button>
+  </div>

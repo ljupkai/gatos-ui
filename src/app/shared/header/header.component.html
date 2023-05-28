@@ -7,14 +7,20 @@
   </div>
 
   <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-    <li><a routerLink="/" routerLinkActive="router-link-active" class="nav-link px-2 link-secondary">Home</a></li>
-    <li><a routerLink="/donar" class="nav-link px-2">Donar</a></li>
-    <li><a routerLink="/adoptar" class="nav-link px-2">Proceso de adopción</a></li>
-    <li><a routerLink="/" class="nav-link px-2">Galeria de adoptados</a></li>
+    <li><a routerLink="" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact : true}"
+        class="nav-link px-2">Home</a></li>
+    <li><a routerLink="gatos/donar" routerLinkActive="router-link-active" class="nav-link px-2">Donar</a></li>
+    <li><a routerLink="gatos/adoptar" routerLinkActive="router-link-active" class="nav-link px-2">Proceso de
+        adopción</a>
+    </li>
+    <li><a routerLink="gatos/galeria" routerLinkActive="router-link-active" class="nav-link px-2">Galeria de
+        adoptados</a>
+    </li>
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+      <a class="nav-link dropdown-toggle" routerLinkActive="router-link-active" data-bs-toggle="dropdown"
+        aria-expanded="false">Admin</a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" routerLink="add">Añadir gato</a></li>
+        <li><a class="dropdown-item" routerLink="gatos/add">Añadir gato</a></li>
         <li><a class="dropdown-item" href="#">Lista de usuarios</a></li>
         <li><a class="dropdown-item" href="#">Something else here</a></li>
       </ul>

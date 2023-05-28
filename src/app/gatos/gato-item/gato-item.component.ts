@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Gato } from '../../interfaces/gato'
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-gato-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './gato-item.component.html',
   styleUrls: ['./gato-item.component.css']
 })

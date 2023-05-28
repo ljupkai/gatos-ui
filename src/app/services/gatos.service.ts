@@ -16,6 +16,11 @@ export class GatosService {
     return this.http.get<Gato[]>(`${this.baseUrl}gato`).pipe(map( (res) => res ))
   }
 
+  getGato(id: string): Observable<Gato> {
+    return this.http.get<any>(`${this.baseUrl}gato/${id}`).
+      pipe(map((res) => res.resultado));
+  }
+
   crearGato(gato: Gato): Observable<Gato>{
     return this.http.post<Gato>(`${this.baseUrl}gato`, gato).pipe(map(res => res))
   }
