@@ -11,11 +11,11 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./gato-item.component.css']
 })
 export class GatoItemComponent {
-  @Input() gatoItem: Gato | null = null;
+  @Input() gato!: Gato;
 
   get firstImage(): string | null {
-    if (this.gatoItem && this.gatoItem.imagen && this.gatoItem.imagen.length > 0) {
-      return this.gatoItem.imagen[0]
+    if (this.gato && this.gato.imagen && this.gato.imagen.length > 0) {
+      return this.gato.imagen[0]
     }
     return null;
   }

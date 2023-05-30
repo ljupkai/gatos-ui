@@ -2,22 +2,23 @@
   <div class="container"> -->
 
 <!-- <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">-->
-<ng-container *ngIf="gatoItem">
-  <div class="col">
-    <div class="card shadow-sm">
-      <img class="card-img-top" style="object-fit:cover " height="200" [src]="firstImage">
-      <title> {{gatoItem.nombre }}</title>
-      <div class="card-body">
-        <p class="card-text">{{gatoItem.nombre }}</p>
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="btn-group">
-            <a [routerLink]="['/gatos', gatoItem._id]" type="button"
-              class="btn btn-sm btn-outline-secondary stretched-link">View</a>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-          </div>
-          <small class="text-body-secondary"></small>
+<!-- <ng-container *ngIf="gatoItem"> -->
+<div class="col">
+  <div class="card shadow-sm">
+    <img [routerLink]="['/gatos', gato._id]" class=" card-img-top" style="object-fit:cover " height="200"
+      [src]="firstImage">
+    <title> {{gato.nombre }}</title>
+    <div class="card-body">
+      <p class="card-text">{{gato.nombre }}</p>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+          <a [routerLink]="['/gatos', gato._id]" type="button"
+            class="btn btn-sm btn-outline-secondary stretched-link">View</a>
+          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
         </div>
+        <small class="text-body-secondary"></small>
       </div>
     </div>
   </div>
-</ng-container>
+</div>
+<!-- </ng-container> -->

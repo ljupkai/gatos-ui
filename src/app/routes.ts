@@ -6,23 +6,13 @@ import { AdoptarComponent } from "./paginas/adoptar/adoptar.component";
 import { DonarComponent } from "./paginas/donar/donar.component";
 
 export const APP_ROUTES: Routes = [{
+  path: 'gatos',
+  loadChildren: () => import('./gatos/gatos-routes').then(m => m.GATOS_ROUTES)
+},
+{
   path: '',
-  component: GatosListaComponent
-},
-{
-path: 'gatos/donar',
-component: DonarComponent},
-{
-  path: 'gatos/adoptar',
-  component: AdoptarComponent
-},
-{
-  path: 'gatos/add',
-  component: GatoFormComponent
-},
-{
-  path: 'gatos/:_id',
-  component: GatoDetailComponent
+  redirectTo: 'gatos',
+  pathMatch: 'full'
 },
 { path: '**', redirectTo: '', pathMatch: 'full' }
 ]
