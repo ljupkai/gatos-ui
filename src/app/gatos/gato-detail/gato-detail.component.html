@@ -2,7 +2,7 @@
 
 <div class="mt-4">
   <div class="container">
-    <h1>Conoce a {{ gato.nombre }}</h1>
+    <h1>Conoce a {{ gato.nombre | uppercase}}</h1>
     <hr>
 
     <!-- Carousel -->
@@ -47,12 +47,19 @@
         <p>
           {{gato.descripcion}}
         </p>
+        <p>Edad: {{ gato.edad }}</p>
+        <p>Castrado:
+          <fa-icon *ngIf="gato.castrado" [icon]="icons.faCheck"></fa-icon>
+          <fa-icon *ngIf="!gato.castrado" [icon]="icons.faXmark"></fa-icon>
+        </p>
+        <p>Color: {{gato.color}}</p>
+        <p *ngIf="gato.personalidad[0] === 'solo'; else elseBlock">No se lleva bien con otros animales</p>
+        <ng-template #elseBlock>
+          <p>Se lleva bien con {{gato.personalidad[0]}}</p>
+        </ng-template>
         <button class="btn btn-primary">¡Adopta a {{gato.nombre}}!</button>
       </div>
     </div>
-
-
-
 
   </div>
   <div class="mt-3">

@@ -4,16 +4,18 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { GatosService } from 'src/app/services/gatos.service';
 import { Gato } from 'src/app/interfaces/gato';
 import { GatoItemComponent } from '../gato-item/gato-item.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-gato-detail',
   standalone: true,
-  imports: [CommonModule, GatoItemComponent, RouterModule],
+  imports: [CommonModule, GatoItemComponent, RouterModule, FontAwesomeModule],
   templateUrl: './gato-detail.component.html',
   styleUrls: ['./gato-detail.component.css']
 })
 export class GatoDetailComponent implements OnInit{
-
+  icons = { faCheck, faXmark }
   gato!: Gato;
 
   constructor(private route: ActivatedRoute, private router: Router, private gatoService: GatosService) {}
