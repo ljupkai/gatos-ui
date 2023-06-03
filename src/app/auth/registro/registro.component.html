@@ -1,6 +1,12 @@
 <div class="container">
   <div class="card card-body">
-    <form id="form-register" class="mt-4" (ngSubmit)="register()" [formGroup]="registerForm">
+    <div class="alert alert-danger" *ngIf="error">
+      {{error}}
+    </div>
+    <div *ngIf="isLoading" class="text-center mt-4">
+      <div class="spinner-border text-success" role="status"></div>
+    </div>
+    <form id="form-register" class="mt-4" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!isLoading">
       <legend class="mb-4">Crear una cuenta</legend>
       <div class="mb-4">
         <!-- <label for="nombre">Nombre:</label> -->

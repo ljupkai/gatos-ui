@@ -34,8 +34,10 @@ input, .btn, .login {
   background-color: #3aa28f;
 }
 
-/* button {
-} */
+.alert {
+  width: 30rem;
+  margin: auto;
+}
 
 img {
   position: relative;

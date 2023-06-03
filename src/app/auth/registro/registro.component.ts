@@ -18,6 +18,8 @@ export class RegistroComponent implements OnInit{
 
   newUser!: User;
   saved = false;
+  isLoading = false;
+  error: string = '';
 
   registerForm!: FormGroup;
   emailGroup!: FormGroup;
@@ -70,6 +72,7 @@ export class RegistroComponent implements OnInit{
       correo: this.registerForm.get('emailGroup')?.get('emailControl')?.value,
       password: this.registerForm.get('passwordControl')?.value,
     };
+    this.isLoading = true;
 
     this.authService
       .register(newUser)
@@ -77,10 +80,10 @@ export class RegistroComponent implements OnInit{
         map((user) => {
           this.saved = true;
         }),
-        tap(() => this.router.navigate(['/auth/login']))
+        tap(() => {this.router.navigate(['/auth/login']); this.isLoading = false;})
       )
       .subscribe({
-        error: (error) => console.error(error),
+        error: (error) => {console.error(error); this.isLoading = false; this.error = error.error.message},
       });
   }
 

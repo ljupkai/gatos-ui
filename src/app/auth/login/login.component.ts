@@ -14,10 +14,9 @@ import { UserLogin } from '../interfaces/user';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
-
   emailControl!: FormControl<string>;
   passwordControl!: FormControl<string>;
 
@@ -29,12 +28,13 @@ export class LoginComponent implements OnInit{
   };
 
   isLoading: boolean = false;
+  error: string = '';
 
   constructor(
     private readonly router: Router,
     private readonly authService: AuthService,
     private fb: NonNullableFormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.emailControl = this.fb.control('', [
@@ -60,9 +60,14 @@ export class LoginComponent implements OnInit{
 
     this.authService
       .login(user)
-      .pipe(tap(() => {this.router.navigate(['/gatos']); this.isLoading = false;}))
+      .pipe(tap(() => { this.router.navigate(['/gatos']); this.isLoading = false; }))
       .subscribe({
-        error: (error) => {console.error(error); this.isLoading = false},
+        error: (error) => {
+          console.error(error.error.message);
+          if (error.error.message === 'Unauthorized'){
+            this.error = 'Datos incorrectos. Intenta de nuevo'
+          }
+          this.isLoading = false; },
       });
   }
 
