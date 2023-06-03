@@ -1,0 +1,42 @@
+<div class="fondo">
+  <div class="container">
+
+
+    <div class="card card-body">
+      <div *ngIf="isLoading" class="text-center mt-4">
+        <div class="spinner-border" role="status">
+        </div>
+      </div>
+      <form id="login" class="mt-4" [formGroup]="loginForm" (ngSubmit)="login()" *ngIf="!isLoading">
+        <!-- <legend class="mb-4"></legend> -->
+
+        <div class="mb-4">
+          <!-- <label for="correo">Email:</label> -->
+          <input type="email" class="form-control p-3" name="email" id="email" placeholder="Correo"
+            formControlName="emailControl" [ngClass]="validClasses(emailControl, 'is-valid', 'is-invalid')" />
+          <div class="invalid-feedback ms-2" *ngIf="!!emailControl.errors">
+            El correo es obligatorio y debe ser un correo válido
+          </div>
+        </div>
+        <div class="mb-4">
+          <!-- <label for="password">Password:</label> -->
+          <input type="password" class="form-control p-3" name="password" id="password" placeholder="Contraseña"
+            formControlName="passwordControl" [ngClass]="validClasses(passwordControl, 'is-valid', 'is-invalid')" />
+          <div class="invalid-feedback ms-2" *ngIf="passwordControl.errors?.['required']">
+            La contraseña es un campo obligatorio
+          </div>
+        </div>
+        <div class="d-grid d-block">
+          <button type="submit" class="btn login mt-3 p-3" [disabled]="!loginForm.valid">
+            Login
+          </button>
+          <a [routerLink]="['/auth/registro']" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: true }" class="btn btn-secondary mt-3 p-3">Registro</a>
+
+        </div>
+
+      </form>
+      <img src="../../../assets/images/cat_peek.png" alt="">
+    </div>
+  </div>
+</div>

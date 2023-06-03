@@ -1,0 +1,28 @@
+.card {
+  width: 30rem;
+  max-width: 100%;
+  margin: 3rem auto 0 auto;
+  padding: 2rem;
+  z-index: 3;
+}
+
+input, button {
+  border-radius: 12px;
+}
+
+.btn {
+  background-color:#3aa28f;
+  color: white;
+}
+
+img {
+  position: absolute;
+  right: 80px;
+  top: 20px;
+  z-index: -1;
+  height: 600px;
+}
+
+/* .blob {
+  z-index: 1;
+} */

@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="card card-body">
+    <form id="form-register" class="mt-4" (ngSubmit)="register()" [formGroup]="registerForm">
+      <legend class="mb-4">Crear una cuenta</legend>
+      <div class="mb-4">
+        <!-- <label for="nombre">Nombre:</label> -->
+        <input type="text" class="form-control p-3" id="nombre" name="nameUser" placeholder="Nombre"
+          formControlName="nombreControl" [ngClass]="validClasses(nombreControl, 'is-valid', 'is-invalid')" />
+        <div class="invalid-feedback ms-2" *ngIf="nombreControl.errors?.['required']">
+          El nombre es un campo obligatorio
+        </div>
+      </div>
+      <div formGroupName="emailGroup">
+        <div class="mb-4">
+          <!-- <label for="correo">Correo:</label> -->
+          <input type="email" class="form-control p-3" id="email" name="email" placeholder="Correo"
+            formControlName="emailControl" [ngClass]="validClasses(emailControl, 'is-valid', 'is-invalid')" />
+          <div class="invalid-feedback ms-2" *ngIf="!!emailControl.errors">
+            El correo es obligatorio y debe ser un correo válido
+          </div>
+        </div>
+        <div class="mb-4">
+          <!-- <label for="correo">Repetir correo:</label> -->
+          <input type="email" class="form-control p-3" id="email2" name="email2" placeholder="Correo"
+            formControlName="repeatEmailControl" [ngClass]="emailGroup.errors?.['match'] ? 'is-invalid' : 'is-valid'" />
+          <div class="invalid-feedback ms-2" *ngIf="!!emailGroup.errors?.['match']">
+            Los correos no coinciden
+          </div>
+        </div>
+      </div>
+      <div class="mb-4">
+        <!-- <label for="password">Contraseña:</label> -->
+        <input type="password" class="form-control p-3" id="password" name="password" placeholder="Contraseña"
+          formControlName="passwordControl" [ngClass]="validClasses(passwordControl, 'is-valid', 'is-invalid')" />
+        <div class="invalid-feedback ms-2" *ngIf="passwordControl.errors?.['required']">
+          La contraseña es un campo obligatorio
+        </div>
+        <div class="invalid-feedback ms-2" *ngIf="passwordControl.errors?.['minlength']">
+          La contraseña debe tener al menos 4 carácteres
+        </div>
+      </div>
+      <div class="d-grid d-block">
+        <button class="btn mt-3 p-3">
+          Crear cuenta
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="d-none d-xl-block"><img src="../../../assets/images/gatito1.png" alt="gatito"></div>
+  <!-- <div class="blob"><img src="../../../assets/images/blob1.png" alt="blob"></div> -->
+</div>
