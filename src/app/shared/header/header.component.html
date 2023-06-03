@@ -16,21 +16,30 @@
     <li><a routerLink="gatos/galeria" routerLinkActive="router-link-active" class="nav-link px-2">Galeria de
         adoptados</a>
     </li>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" routerLinkActive="router-link-active" data-bs-toggle="dropdown"
-        aria-expanded="false">Admin</a>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" routerLink="gatos/add">Añadir gato</a></li>
-        <li><a class="dropdown-item" href="#">Lista de usuarios</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-    </li>
+    <ng-container *ngIf="displayLinksUser">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" routerLinkActive="router-link-active" data-bs-toggle="dropdown"
+          aria-expanded="false">Admin</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" routerLink="gatos/add">Añadir gato</a></li>
+          <li><a class="dropdown-item" href="#">Lista de usuarios</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+      </li>
+    </ng-container>
   </ul>
 
   <div class="col-md-3 text-end">
-    <button type="button" class="btn btn-outline-warning me-2" routerLink="auth/login"
-      routerLinkActive="router-link-active">Login</button>
-    <button type="button" class="btn signup" routerLink="auth/registro"
-      routerLinkActive="router-link-active">Sign-up</button>
+    <ng-container *ngIf="displayLinksUser">
+      <button type="button" class="btn btn-outline-warning me-2" (click)="logout()">Logout</button>
+    </ng-container>
+    <!-- <ng-template #elseBlock> -->
+    <ng-container *ngIf="!displayLinksUser">
+      <button type="button" class="btn btn-outline-warning me-2" routerLink="auth/login"
+        routerLinkActive="router-link-active">Login</button>
+      <button type="button" class="btn signup" routerLink="auth/registro"
+        routerLinkActive="router-link-active">Sign-up</button>
+    </ng-container>
+    <!-- </ng-template> -->
   </div>
 </header>

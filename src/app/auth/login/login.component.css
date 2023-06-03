@@ -16,7 +16,7 @@
   max-width: 100%;
   margin: 8rem auto 0 auto;
   padding: 2rem;
-  height: 410px;
+  /* height: 410px; */
 }
 
 .btn.login {
@@ -41,7 +41,7 @@ input, .btn, .login {
 
 img {
   position: relative;
-  top: -480px;
+  margin-top: -145px;
 }
 
 

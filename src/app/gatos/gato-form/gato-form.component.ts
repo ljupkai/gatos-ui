@@ -118,4 +118,13 @@ export class GatoFormComponent implements OnInit {
       })
     }
   }
+
+  canDeactivate() {
+    return (
+      this.saved ||
+      this.gatoForm.pristine ||
+      confirm('Salir del formulario sin completar?')
+    );
+  }
+
 }

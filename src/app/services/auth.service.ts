@@ -31,9 +31,9 @@ export class AuthService {
     return this.http.post<RegisterResponse>('http://localhost:3000/auth/registro', userInfo);
   }
 
-  checkToken(): Observable<TokenResponse> {
-    return this.http.get<TokenResponse>('auth/validate');
-  }
+  // checkToken(): Observable<TokenResponse> {
+  //   return this.http.get<TokenResponse>('auth/validate');
+  // }
 
   logout(): void {
     localStorage.removeItem('token');

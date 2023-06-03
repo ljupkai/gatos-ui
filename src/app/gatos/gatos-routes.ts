@@ -1,13 +1,17 @@
 import { Routes } from "@angular/router";
-import { GatoFormComponent } from "./gato-form/gato-form.component";
 
 import { DonarComponent } from "../paginas/donar/donar.component";
 import { gatosResolver } from "../resolvers/gatos-resolver";
+import { loginActivateGuard } from "../guards/login-activate.guard";
+import { leavePageGuard } from "../guards/leave-page.guard";
+import { logoutActivateGuard } from "../guards/logout-activate.guard";
 
 export const GATOS_ROUTES: Routes = [
   {
     path: "add",
-    component: GatoFormComponent,
+    canActivate: [loginActivateGuard],
+    canDeactivate: [leavePageGuard],
+    loadComponent: () => import('./gato-form/gato-form.component').then((m) => m.GatoFormComponent)
   },
 
   {
