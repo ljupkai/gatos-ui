@@ -25,11 +25,14 @@ export class GatosListaComponent implements OnInit {
   filterSearch = '';
   filterPersonalidad = '';
   icons = { faChevronDown, faSearch }
+  isLoading = false;
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.gatosService.getGatos().subscribe((gatos) => {
       this.gatos = gatos
       console.log(gatos)
+      this.isLoading = false;
       // this.addAbsoluteImageUrls();
     })
   }

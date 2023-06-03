@@ -42,7 +42,10 @@
 
 <div class="album py-5 bg-body-tertiary">
   <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+    <div *ngIf="isLoading" class="text-center mt-5">
+      <div class="spinner-border text-info " role="status"></div>
+    </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" *ngIf="!isLoading">
       <app-gato-item *ngFor="let g of gatos | gatosFilter: showNoReservados : filterSearch : filterPersonalidad"
         [gato]="g"></app-gato-item>
     </div>
