@@ -63,8 +63,9 @@ export class LoginComponent implements OnInit {
       .pipe(tap(() => { this.router.navigate(['/gatos']); this.isLoading = false; }))
       .subscribe({
         error: (error) => {
-          console.error(error.error.message);
-          if (error.error.message === 'Unauthorized'){
+          if (error.error && error.error.message === 'Unauthorized'){
+            this.error = 'El usuario no existe'
+          } else{
             this.error = 'Datos incorrectos. Intenta de nuevo'
           }
           this.isLoading = false; },

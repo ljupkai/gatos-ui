@@ -28,9 +28,10 @@
       </li>
     </ng-container>
   </ul>
-
   <div class="col-md-3 text-end">
     <ng-container *ngIf="displayLinksUser">
+      <button class="btn" routerLink="usuario/me" routerLinkActive="router-link-active">Mi perfíl</button>
+
       <button type="button" class="btn btn-outline-warning me-2" (click)="logout()">Logout</button>
     </ng-container>
     <!-- <ng-template #elseBlock> -->

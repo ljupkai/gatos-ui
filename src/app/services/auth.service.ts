@@ -18,7 +18,8 @@ export class AuthService {
   login(loginData: UserLogin): Observable<any> {
     return this.http.post<TokenResponse>('http://localhost:3000/auth/login', loginData).pipe(
       map((resp) => {
-        localStorage.setItem('token', resp.accessToken);
+        console.log(resp.access_token)
+        localStorage.setItem('token', resp.access_token);
       }),
       tap(() => {
         this.logged = true;
@@ -31,9 +32,9 @@ export class AuthService {
     return this.http.post<RegisterResponse>('http://localhost:3000/auth/registro', userInfo);
   }
 
-  // checkToken(): Observable<TokenResponse> {
-  //   return this.http.get<TokenResponse>('auth/validate');
-  // }
+  checkToken(): Observable<TokenResponse> {
+    return this.http.get<TokenResponse>('http://localhost:3000/auth/validate');
+  }
 
   logout(): void {
     localStorage.removeItem('token');
@@ -47,7 +48,7 @@ export class AuthService {
     } else if (this.logged && localStorage?.['token']) {
       return of(true);
     } else {
-      this.http.get<TokenResponse>('auth/validate').subscribe({
+      this.http.get<TokenResponse>('http://localhost:3000/auth/validate').subscribe({
         next: () => {
           this.logged = true;
           this.loginChange$.next(true);
