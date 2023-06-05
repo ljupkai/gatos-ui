@@ -3,10 +3,23 @@ export interface User {
   nombre: string;
   correo: string;
   password?: string;
-  // avatar: string;
-  // lat: number;
-  // lng: number;
-  // me?: boolean;
+  favoritos?: string[];
+  imagenes?: string[];
+  nombreCompleto?: string;
+  direccion?: string;
+  telefono?: number;
+  infoMudanza?: string;
+  infoPorque?: string;
+  infoFamilia?: string;
+  infoCostes?: string;
+  infoAbandonar?: string;
+  infoMovimiento?: string;
+  infoProteccion?: string;
+  infoExperiencia?: string;
+  infoProblemas?: string;
+  infoMascotasActuales?: string;
+  infoMascotasAnteriores?: string;
+  infoVeterinario?: string;
 }
 
 export interface UserRequest {
