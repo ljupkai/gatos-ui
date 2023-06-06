@@ -1,0 +1,62 @@
+<div class="container">
+  <ng-container *ngIf="modalContent==='encuesta'">
+    <div class="modal-header">
+      <h2 class="modal-title">Por favor, complete el cuestionario detalladamente</h2>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="encuestaForm" (ngSubmit)="onSubmit()">
+        <ng-container *ngFor="let field of formFields">
+          <ng-container
+            *ngIf="field.name === 'nombreCompleto' || field.name === 'direccion' || field.name === 'telefono'">
+            <div class="mb-3">
+              <label [for]="field.name" class="form-label">{{ field.label }}</label>
+              <input type="text" class="form-control" [id]="field.name" [name]="field.name"
+                [formControlName]="field.controlName"
+                [ngClass]="validClasses(encuestaForm.controls[field.controlName], 'is-valid', 'is-invalid')">
+              <span class="invalid-feedback" *ngIf="encuestaForm.get(field.controlName)?.errors?.['required']">La
+                respuesta
+                es
+                obligatoria</span>
+            </div>
+          </ng-container>
+          <ng-container
+            *ngIf="field.name != 'nombreCompleto' && field.name != 'direccion' && field.name !== 'telefono'">
+            <div class="mb-3">
+              <label [for]="field.name" class="form-label">{{ field.label }}</label>
+              <textarea class="form-control" [id]="field.name" [name]="field.name" rows="3"
+                [formControlName]="field.controlName"
+                [ngClass]="validClasses(encuestaForm.controls[field.controlName], 'is-valid', 'is-invalid')"></textarea>
+              <span class="invalid-feedback" *ngIf="encuestaForm.get(field.controlName)?.errors?.['required']">La
+                respuesta
+                es
+                obligatoria</span> <span class="invalid-feedback"
+                *ngIf="encuestaForm.get(field.controlName)?.errors?.['minlength']">Tienes que escribir al menos 20
+                carácteres</span>
+            </div>
+          </ng-container>
+        </ng-container>
+
+        <button type="submit" class="btn btn-primary mt-2" [disabled]="!encuestaForm.valid">Crear</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+
+  </ng-container>
+  <ng-container *ngIf="modalContent === 'password'">
+    <div class="container pass-modal">
+      <div class="modal-header">
+        <h4 class="modal-title">Hi there!</h4>
+        <button type="button" class="btn-close" aria-label="Close"
+          (click)="activeModal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <p>Hello!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+      </div>
+    </div>
+  </ng-container>
+</div>

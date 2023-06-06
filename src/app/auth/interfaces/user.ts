@@ -7,7 +7,7 @@ export interface User {
   imagenes?: string[];
   nombreCompleto?: string;
   direccion?: string;
-  telefono?: number;
+  telefono?: string;
   infoMudanza?: string;
   infoPorque?: string;
   infoFamilia?: string;

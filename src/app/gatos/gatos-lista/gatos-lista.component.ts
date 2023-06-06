@@ -31,7 +31,6 @@ export class GatosListaComponent implements OnInit {
     this.isLoading = true;
     this.gatosService.getGatos().subscribe((gatos) => {
       this.gatos = gatos
-      console.log(gatos)
       this.isLoading = false;
       // this.addAbsoluteImageUrls();
     })

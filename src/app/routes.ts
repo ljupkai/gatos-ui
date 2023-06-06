@@ -1,4 +1,5 @@
 import { Routes } from "@angular/router";
+import { EditarPerfilComponent } from "./usuarios/editar-perfil/editar-perfil.component";
 
 export const APP_ROUTES: Routes = [{
   path: 'gatos',

@@ -7,7 +7,7 @@
           <p class="card-text">Nombre: {{usuario.nombre}}</p>
           <p class="card-text">Correo: {{ usuario.correo }}</p>
           <!-- <button class="btn btn-primary">Editar Información Personal</button> -->
-          <button class="btn btn-primary">Cambiar Contraseña</button>
+          <button class="btn btn-primary" (click)="abrirModal('password')">Cambiar Contraseña</button>
         </div>
       </div>
     </div>
@@ -64,7 +64,8 @@
                 {{usuario.infoVeterinario}}</p>
             </div>
           </ng-container>
-          <ng-template #elseBlock><button class="btn btn-warning">Rellenar la encuesta</button></ng-template>
+          <ng-template #elseBlock><button class="btn btn-warning" (click)="abrirModal('encuesta')">Rellenar la
+              encuesta</button></ng-template>
         </div>
       </div>
     </div>
