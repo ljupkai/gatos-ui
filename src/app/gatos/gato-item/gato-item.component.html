@@ -9,8 +9,15 @@
       [src]="firstImage">
     <title> {{gato.nombre }}</title>
     <div class="card-body">
-      <p class="card-text">{{gato.nombre }}</p>
-      <div class="d-flex justify-content-between align-items-center">
+      <div class="card-text mb-3 row">
+        <h4 class="col">{{gato.nombre }}</h4>
+        <div class="col text-end like-icon"> {{gato.numLikes}}
+          <fa-icon *ngIf="isLiked()" [icon]='icons.faHeart' (click)="toggleLike()"></fa-icon>
+          <fa-icon *ngIf="!isLiked()" [icon]='icons.faHeart2' (click)="toggleLike()">
+          </fa-icon>
+        </div>
+      </div>
+      <div class=" d-flex justify-content-between align-items-center">
         <div class="btn-group">
           <a [routerLink]="['/gatos', gato._id]" type="button"
             class="btn btn-sm btn-outline-secondary stretched-link">View</a>
@@ -19,6 +26,9 @@
         <small class="text-body-secondary"></small>
       </div>
     </div>
+    <!-- <div class="card-footer text-end">
+      2 days ago
+    </div> -->
   </div>
 </div>
 <!-- </ng-container> -->

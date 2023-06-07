@@ -8,6 +8,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronDown, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { GatosFilterPipe } from '../pipes/gatos-filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { User } from 'src/app/auth/interfaces/user';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
     selector: 'app-gatos-lista',
@@ -18,7 +20,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class GatosListaComponent implements OnInit {
 
-  constructor(private gatosService: GatosService, private route: ActivatedRoute) {}
+  constructor(private gatosService: GatosService, private usuarioService: UsuarioService) {}
 
   gatos: Gato[] = [];
   showNoReservados = false;
@@ -26,24 +28,23 @@ export class GatosListaComponent implements OnInit {
   filterPersonalidad = '';
   icons = { faChevronDown, faSearch }
   isLoading = false;
+  usuario!: User;
+
 
   ngOnInit(): void {
     this.isLoading = true;
     this.gatosService.getGatos().subscribe((gatos) => {
       this.gatos = gatos
       this.isLoading = false;
-      // this.addAbsoluteImageUrls();
+    })
+
+    this.usuarioService.getUser('me').subscribe({
+      next: (usuario) => {this.usuario = usuario},
+      error: (error) => (console.log(error))
     })
   }
 
   setNoReservados() {
     this.showNoReservados = !this.showNoReservados;
   }
-  // addAbsoluteImageUrls(): void {
-  //   const serverBaseUrl = 'http://localhost:3000';
-  //   this.gatos.forEach((gato) => {
-  //     gato.absoluteImageUrl = gato.imagen.map((imageUrl) => serverBaseUrl + imageUrl);
-  //   });
-  //   this.gatos.forEach(gato => gato.absoluteImageUrl.forEach(g => g) )
-  // }
 }

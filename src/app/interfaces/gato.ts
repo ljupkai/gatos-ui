@@ -12,4 +12,5 @@ export interface Gato {
   imagen: string[];
   absoluteImageUrl: string[];
   imagenFiles: File[];
+  likedBy?: string[];
 }

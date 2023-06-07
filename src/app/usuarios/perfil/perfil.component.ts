@@ -26,7 +26,7 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.usuario = this.route.snapshot.data['user']['usuario'];
+    this.usuario = this.route.snapshot.data['user'];
 
     //Obtener el array de los objetos gatos desde favoritos
     const observables = this.usuario.favoritos?.map(fav => this.gatosService.getGato(fav));

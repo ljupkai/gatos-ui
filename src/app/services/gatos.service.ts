@@ -24,4 +24,14 @@ export class GatosService {
   crearGato(gato: Gato): Observable<Gato>{
     return this.http.post<Gato>(`${this.baseUrl}gato`, gato).pipe(map(res => res))
   }
+
+  actualizarGato(gato: Gato): Observable<Gato>{
+    return this.http.post<Gato>(`${this.baseUrl}gato`, gato).pipe(map((res) => res))
+  }
+
+  marcarLike(idGato: string, idUser: string): Observable<string> {
+    const payload = {idGato, idUser}
+    console.log(payload);
+    return this.http.post(`${this.baseUrl}gato/${idGato}/${idUser}/like`, payload).pipe(map((res: any) => res))
+  }
 }
