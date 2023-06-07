@@ -9,7 +9,7 @@ import { logoutActivateGuard } from "../guards/logout-activate.guard";
 export const GATOS_ROUTES: Routes = [
   {
     path: "add",
-    canActivate: [loginActivateGuard],
+    // canActivate: [loginActivateGuard],
     canDeactivate: [leavePageGuard],
     loadComponent: () => import('./gato-form/gato-form.component').then((m) => m.GatoFormComponent)
   },
@@ -27,7 +27,6 @@ export const GATOS_ROUTES: Routes = [
     resolve: {
       gato: gatosResolver,
     },
-    // component: GatoDetailComponent
     loadComponent: () => import('./gato-detail/gato-detail.component').then((m) => m.GatoDetailComponent)
   },
   {

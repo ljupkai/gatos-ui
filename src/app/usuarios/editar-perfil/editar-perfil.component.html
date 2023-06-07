@@ -2,6 +2,7 @@
   <ng-container *ngIf="modalContent==='encuesta'">
     <div class="modal-header">
       <h2 class="modal-title">Por favor, complete el cuestionario detalladamente</h2>
+      <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
       <form [formGroup]="encuestaForm" (ngSubmit)="onSubmit()">
@@ -35,13 +36,14 @@
             </div>
           </ng-container>
         </ng-container>
-
         <button type="submit" class="btn btn-primary mt-2" [disabled]="!encuestaForm.valid">Crear</button>
+        <button type="button" class="btn btn-secondary mt-2 mx-2" (click)="confirmCloseModal()">Cancelar</button>
       </form>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-    </div>
+    <!-- <div class="modal-footer">
+
+      <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Cancelar</button>
+    </div> -->
 
   </ng-container>
   <ng-container *ngIf="modalContent === 'password'">

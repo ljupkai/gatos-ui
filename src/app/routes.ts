@@ -1,5 +1,7 @@
 import { Routes } from "@angular/router";
 import { EditarPerfilComponent } from "./usuarios/editar-perfil/editar-perfil.component";
+import { logoutActivateGuard } from "./guards/logout-activate.guard";
+import { loginActivateGuard } from "./guards/login-activate.guard";
 
 export const APP_ROUTES: Routes = [{
   path: 'gatos',
@@ -11,7 +13,9 @@ export const APP_ROUTES: Routes = [{
 },
 {
   path: 'usuario',
-  loadChildren: () => import('./usuarios/usuarios-routes').then(m => m.USUARIO_ROUTES)
+  loadChildren: () => import('./usuarios/usuarios-routes').then(m => m.USUARIO_ROUTES),
+  canActivate: [loginActivateGuard]
+
 },
 {
   path: '',

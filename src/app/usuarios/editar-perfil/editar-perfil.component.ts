@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, ReactiveFormsModule, NonNullableFormBuilder, Validators, AbstractControl, Form } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { UserEncuesta } from 'src/app/auth/interfaces/user';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -13,12 +14,15 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class EditarPerfilComponent implements OnInit {
   @Input() modalContent!: string;
+  @Output() formularioEnviado = new EventEmitter<void>();
+  @Output() closeModal = new EventEmitter<void>();
 
 
   constructor(
     public activeModal: NgbActiveModal,
     private readonly usuarioService: UsuarioService,
-    private fb: NonNullableFormBuilder) {}
+    private fb: NonNullableFormBuilder,
+    private modalService: NgbModal) {}
 
   encuestaForm!: FormGroup;
 
@@ -101,8 +105,35 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.encuestaForm)
+    const encuestaData: UserEncuesta = {
+      nombreCompleto: this.encuestaForm.get('nombreCompleto')?.value,
+      direccion: this.encuestaForm.get('direccion')?.value,
+      telefono: this.encuestaForm.get('telefono')?.value,
+      infoMudanza: this.encuestaForm.get('infoMudanza')?.value,
+      infoPorque: this.encuestaForm.get('infoPorque')?.value,
+      infoFamilia: this.encuestaForm.get('infoFamilia')?.value,
+      infoCostes: this.encuestaForm.get('infoCostes')?.value,
+      infoAbandonar: this.encuestaForm.get('infoAbandonar')?.value,
+      infoMovimiento: this.encuestaForm.get('infoMovimiento')?.value,
+      infoProteccion: this.encuestaForm.get('infoProteccion')?.value,
+      infoExperiencia: this.encuestaForm.get('infoExperiencia')?.value,
+      infoProblemas: this.encuestaForm.get('infoProblemas')?.value,
+      infoMascotasActuales: this.encuestaForm.get('infoMascotasActuales')?.value,
+      infoMascotasAnteriores: this.encuestaForm.get('infoMascotasAnteriores')?.value,
+      infoVeterinario: this.encuestaForm.get('infoVeterinario')?.value
+    };
+    this.usuarioService.actualizarEncuesta(encuestaData).subscribe({
+      next: () => { this.formularioEnviado.emit(); },
+      error: (error) => console.log(error)
+    })
+
   }
 
+  confirmCloseModal() {
+    const confirmResult = confirm('¿Estás seguro de que quierres cerrar? Los datos se van a perder');
+    if (confirmResult) {
+      this.closeModal.emit();
+    }
+  }
 
 }

@@ -1,5 +1,5 @@
 export interface User {
-  id?: number;
+  id?: string;
   nombre: string;
   correo: string;
   password?: string;
@@ -39,4 +39,22 @@ export interface UserLogin {
 
 export interface ResponseUser {
   user: User;
+}
+
+export interface UserEncuesta {
+  nombreCompleto: string;
+  direccion: string;
+  telefono: string;
+  infoMudanza: string;
+  infoPorque: string;
+  infoFamilia: string;
+  infoCostes: string;
+  infoAbandonar: string;
+  infoMovimiento: string;
+  infoProteccion: string;
+  infoExperiencia: string;
+  infoProblemas: string;
+  infoMascotasActuales: string;
+  infoMascotasAnteriores: string;
+  infoVeterinario: string;
 }

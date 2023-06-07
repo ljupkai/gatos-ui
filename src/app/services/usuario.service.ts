@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ResponseUser, User } from '../auth/interfaces/user';
+import { ResponseUser, User, UserEncuesta } from '../auth/interfaces/user';
 import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -14,5 +14,10 @@ export class UsuarioService {
     return this.http
       .get<User>(`http://localhost:3000/usuario/${id}`)
       .pipe(map(res => res));
+  }
+
+  actualizarEncuesta(encuesta: UserEncuesta): Observable<UserEncuesta> {
+    return this.http.post<UserEncuesta>(`http://localhost:3000/usuario/me/encuesta`, {...encuesta})
+    .pipe(map(res => res));
   }
 }
