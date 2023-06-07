@@ -28,8 +28,7 @@ export class GatosListaComponent implements OnInit {
   filterPersonalidad = '';
   icons = { faChevronDown, faSearch }
   isLoading = false;
-  usuario!: User;
-
+  usuario: User | null = null;
 
   ngOnInit(): void {
     this.isLoading = true;

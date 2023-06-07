@@ -1,3 +1,8 @@
 img:hover {
   cursor: pointer;
 }
+
+fa-icon {
+  color:crimson;
+  cursor: pointer;
+}

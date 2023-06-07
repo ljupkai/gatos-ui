@@ -13,14 +13,16 @@ import { filter, tap } from 'rxjs';
 })
 export class HeaderComponent{
 
-  displayLinks = true;
+  displayLinks = false;
 
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router,
     ) {
-      this.authService.loginChange$.subscribe((logged) => this.displayLinks = !logged)
+      this.authService.loginChange$.subscribe((logged) => this.displayLinks = logged);
     }
+
+
 
   // ngAfterViewInit(): void {
   //   this.authService.loginChange$

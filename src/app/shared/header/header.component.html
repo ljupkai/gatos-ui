@@ -16,7 +16,7 @@
     <li><a routerLink="gatos/galeria" routerLinkActive="router-link-active" class="nav-link px-2">Galeria de
         adoptados</a>
     </li>
-    <ng-container *ngIf="!displayLinks">
+    <ng-container *ngIf="displayLinks">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" routerLinkActive="router-link-active" data-bs-toggle="dropdown"
           aria-expanded="false">Admin</a>
@@ -29,12 +29,12 @@
     </ng-container>
   </ul>
   <div class="col-md-3 text-end">
-    <ng-container *ngIf="!displayLinks">
+    <ng-container *ngIf="displayLinks">
       <button class="btn" routerLink="usuario/me" routerLinkActive="router-link-active">Mi perfíl</button>
       <button type="button" class="btn btn-outline-warning me-2" (click)="logout()">Logout</button>
     </ng-container>
     <!-- <ng-template #elseBlock> -->
-    <ng-container *ngIf="displayLinks">
+    <ng-container *ngIf="!displayLinks">
       <button type="button" class="btn btn-outline-warning me-2" routerLink="auth/login"
         routerLinkActive="router-link-active">Login</button>
       <button type="button" class="btn signup" routerLink="auth/registro"
