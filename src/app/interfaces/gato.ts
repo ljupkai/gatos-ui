@@ -13,4 +13,11 @@ export interface Gato {
   absoluteImageUrl: string[];
   imagenFiles: File[];
   likedBy?: string[];
+  Adopciones?: Adopcion[];
+}
+
+interface Adopcion {
+  usuario: string;
+  status: 'pending' | 'reservado' | 'rechazado';
+  date: Date;
 }

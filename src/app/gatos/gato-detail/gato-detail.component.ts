@@ -9,11 +9,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { User } from 'src/app/auth/interfaces/user';
-import { tap } from 'rxjs';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 @Component({
   selector: 'app-gato-detail',
   standalone: true,
-  imports: [CommonModule, GatoItemComponent, RouterModule, FontAwesomeModule],
+  imports: [CommonModule, GatoItemComponent, RouterModule, FontAwesomeModule, SweetAlert2Module],
   templateUrl: './gato-detail.component.html',
   styleUrls: ['./gato-detail.component.css']
 })
@@ -21,6 +21,7 @@ export class GatoDetailComponent implements OnInit {
   icons = { faCheck, faXmark }
   gato!: Gato;
   usuario!: User;
+  adopcionSolicitada: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private gatoService: GatosService, private usuarioService: UsuarioService) { }
 
@@ -32,9 +33,10 @@ export class GatoDetailComponent implements OnInit {
       this.usuarioService.getUser('me').subscribe({
         next: (usuario) => {
           this.usuario = usuario
+          this.adopcionSolicitada = this.gato.Adopciones?.some((adopcion) => adopcion.usuario === this.usuario._id) || false;
         }
       })
-    }
+      }
 
   }
 
@@ -44,8 +46,11 @@ export class GatoDetailComponent implements OnInit {
     }
     if (this.usuario) {
       if (this.usuario._id) {
-        console.log(this.usuario._id)
-        this.gatoService.solicitarAdopcion(this.gato._id, this.usuario._id).subscribe();
+        if (!this.adopcionSolicitada )
+            console.log('se puede solicitar')
+            this.adopcionSolicitada = true;
+
+      //   this.gatoService.solicitarAdopcion(this.gato._id, this.usuario._id).subscribe();}
       }
     }
   }

@@ -22,25 +22,12 @@ export class HeaderComponent{
       this.authService.loginChange$.subscribe((logged) => this.displayLinks = logged);
     }
 
-
-
   // ngAfterViewInit(): void {
   //   this.authService.loginChange$
   //     .pipe(
   //       tap((value) => {
   //         this.displayLinks = !value;
   //       })
-  //     )
-  //     .subscribe();
-  // }
-
-  // ngOnInit(): void {
-  //   this.authService.loginChange$
-  //     .pipe(
-  //       tap((logged) => {
-  //         this.displayLinks = !logged;
-  //       }),
-  //       filter(() => this.router.url !== '/auth/login') // Filter out navigation to the login page
   //     )
   //     .subscribe();
   // }
