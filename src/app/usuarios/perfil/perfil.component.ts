@@ -8,6 +8,7 @@ import { Observer, forkJoin } from 'rxjs';
 import { GatoItemComponent } from 'src/app/gatos/gato-item/gato-item.component';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { EditarPerfilComponent } from '../editar-perfil/editar-perfil.component';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-perfil',
@@ -21,34 +22,21 @@ export class PerfilComponent implements OnInit {
   favoritos: Gato[] = [];
   adopciones: Gato[] = [];
 
-  constructor(private route: ActivatedRoute, private gatosService: GatosService, private modalService: NgbModal, private modalConfig: NgbModalConfig) {
+  constructor(private router: Router,
+    private route: ActivatedRoute, private gatosService: GatosService, private modalService: NgbModal, private modalConfig: NgbModalConfig, private usuarioService: UsuarioService) {
     modalConfig.backdrop = 'static';
     modalConfig.keyboard = false;
   }
 
   ngOnInit() {
-    this.usuario = this.route.snapshot.data['user'];
+    this.route.data.subscribe(({user}) => this.usuario = user)
 
-    //Obtener el array de los objetos gatos desde favoritos
-    const observables = this.usuario.favoritos?.map(fav => this.gatosService.getGato(fav));
 
-    if (observables && observables.length > 0) {
-      const observer: Observer<Gato[]> = {
-        next: (gatos: any) => {
-          this.favoritos = gatos;
-          console.log(gatos);
-        },
-        error: (error: any) => {
-          console.error(error);
-        },
-        complete: () => {
-          // Optional
-        }
-      };
-
-      forkJoin(observables).subscribe(observer);
-    } else {
-      console.log('');
+    if (this.usuario._id) {
+      this.usuarioService.getFavoritos(this.usuario._id).subscribe({
+        next: (gatos) => (this.favoritos = gatos),
+        error: (error) => (console.log(error))
+      })
     }
 
     if (this.usuario._id){

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ResponseUser, User, UserEncuesta } from '../auth/interfaces/user';
 import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Gato } from '../interfaces/gato';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,9 @@ export class UsuarioService {
   actualizarEncuesta(encuesta: UserEncuesta): Observable<UserEncuesta> {
     return this.http.post<UserEncuesta>(`http://localhost:3000/usuario/me/encuesta`, {...encuesta})
     .pipe(map(res => res));
+  }
+
+  getFavoritos(id: string): Observable<Gato[]> {
+    return this.http.get<Gato[]>(`http://localhost:3000/usuario/${id}/favoritos`).pipe(map(res => res));
   }
 }

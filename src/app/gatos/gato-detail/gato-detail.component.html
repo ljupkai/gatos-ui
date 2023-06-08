@@ -58,9 +58,7 @@
           <p>Se lleva bien con {{gato.personalidad[0]}}</p>
         </ng-template>
 
-        <button
-          [swal]="{icon: 'success', title:'¡Has solicitado la adopción de '+gato.nombre+'!', text:'Te contactarémos pronto...'}"
-          class="btn btn-primary" [disabled]="adopcionSolicitada" (click)="adoptar()">¡Adopta a
+        <button class="btn btn-primary" [disabled]="adopcionSolicitada" (click)="adoptar()">¡Adopta a
           {{gato.nombre}}!</button>
         <!-- <button class="btn btn-info">Añadir a favoritos</button> -->
 
@@ -73,3 +71,5 @@
       Go back
     </button>
   </div>
+
+  <!-- [swal]="{icon: 'success', title:'¡Has solicitado la adopción de '+gato.nombre+'!', text:'Te contactarémos pronto...'}" -->

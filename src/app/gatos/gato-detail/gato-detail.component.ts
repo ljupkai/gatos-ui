@@ -5,7 +5,7 @@ import { GatosService } from 'src/app/services/gatos.service';
 import { Gato } from 'src/app/interfaces/gato';
 import { GatoItemComponent } from '../gato-item/gato-item.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import swal from 'sweetalert2';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { User } from 'src/app/auth/interfaces/user';
@@ -50,6 +50,8 @@ export class GatoDetailComponent implements OnInit {
         console.log('se puede solicitar')
         this.gatoService.solicitarAdopcion(this.gato._id, this.usuario._id).subscribe();
         this.adopcionSolicitada = true;
+        swal.fire({icon: 'success', title:'¡Has solicitado la adopción de '+this.gato.nombre+'!', text:'Te contactarémos pronto...'})
+
       }
     }
   }

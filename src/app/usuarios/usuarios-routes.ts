@@ -10,6 +10,7 @@ export const USUARIO_ROUTES: Routes = [
   },
   {
     path: ':_id',
+    runGuardsAndResolvers: "always",
     resolve: {
       user: userResolver
     },

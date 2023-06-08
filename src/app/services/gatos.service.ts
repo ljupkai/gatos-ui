@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { Gato } from '../interfaces/gato';
 import { map, Observable } from 'rxjs';
 import { GatoResponse } from '../interfaces/responses';
+import { User } from '../auth/interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +30,11 @@ export class GatosService {
     return this.http.post<Gato>(`${this.baseUrl}gato`, gato).pipe(map((res) => res))
   }
 
-  marcarLike(idGato: string, idUser: string): Observable<string> {
+  marcarLike(idGato: string, idUser: string): Observable<User> {
     const payload = {idGato, idUser}
     console.log(payload);
-    return this.http.post(`${this.baseUrl}gato/${idGato}/${idUser}/like`, payload).pipe(map((res: any) => res))
+    return this.http.post(`${this.baseUrl}gato/${idGato}/${idUser}/like`, payload).pipe(map((res: any) => {
+    console.log(res); return res.resultado}))
   }
 
   solicitarAdopcion(idGato: string, idUser: string): Observable<Gato> {

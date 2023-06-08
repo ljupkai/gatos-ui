@@ -26,7 +26,7 @@ export class HeaderComponent{
   //   this.authService.loginChange$
   //     .pipe(
   //       tap((value) => {
-  //         this.displayLinks = !value;
+  //         this.displayLinks = value;
   //       })
   //     )
   //     .subscribe();
