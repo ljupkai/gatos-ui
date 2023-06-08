@@ -57,8 +57,8 @@
         <ng-template #elseBlock>
           <p>Se lleva bien con {{gato.personalidad[0]}}</p>
         </ng-template>
-        <button class="btn btn-primary">¡Adopta a {{gato.nombre}}!</button>
-        <button class="btn btn-info">Añadir a favoritos</button>
+        <button class="btn btn-primary" (click)="adoptar()">¡Adopta a {{gato.nombre}}!</button>
+        <!-- <button class="btn btn-info">Añadir a favoritos</button> -->
 
       </div>
     </div>

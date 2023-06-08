@@ -37,10 +37,11 @@ export class GatosListaComponent implements OnInit {
       this.isLoading = false;
     })
 
+    if (localStorage.getItem('token')){
     this.usuarioService.getUser('me').subscribe({
       next: (usuario) => {this.usuario = usuario},
       error: (error) => (console.log(error))
-    })
+    })}
   }
 
   setNoReservados() {

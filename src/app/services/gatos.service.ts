@@ -34,4 +34,9 @@ export class GatosService {
     console.log(payload);
     return this.http.post(`${this.baseUrl}gato/${idGato}/${idUser}/like`, payload).pipe(map((res: any) => res))
   }
+
+  solicitarAdopcion(idGato: string, idUser: string): Observable<Gato> {
+    const usuarioId = { usuario: idUser}
+    return this.http.post<Gato>(`${this.baseUrl}gato/adopcion/${idGato}`, usuarioId).pipe(map((res) => res))
+  }
 }

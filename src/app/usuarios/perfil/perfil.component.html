@@ -16,10 +16,8 @@
         <div class="card-body">
           <h5 class="card-title">Gatos favoritos</h5>
           <ng-container *ngIf="favoritos && favoritos.length > 0; else blockVacio">
-            <div class="row">
-              <div class="col-4">
-                <app-gato-item *ngFor="let gato of favoritos" [gato]="gato" [usuarioId]="usuario._id"></app-gato-item>
-              </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+              <app-gato-item *ngFor="let gato of favoritos" [gato]="gato" [usuarioId]="usuario._id"></app-gato-item>
             </div>
           </ng-container>
           <ng-template #blockVacio>
