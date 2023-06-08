@@ -14,7 +14,7 @@
     <div class="col-md-9">
       <div class="card mb-3">
         <div class="card-body">
-          <h5 class="card-title">Gatos favoritos</h5>
+          <h5 class="card-title mb-3">Gatos favoritos</h5>
           <ng-container *ngIf="favoritos && favoritos.length > 0; else blockVacio">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
               <app-gato-item *ngFor="let gato of favoritos" [gato]="gato" [usuarioId]="usuario._id"></app-gato-item>
@@ -24,6 +24,15 @@
             <p>Aquí no hay nada...</p>
             <img src="../../../assets/images/cat-empty.png" alt="empty">
           </ng-template>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-body">
+
+          <h5 class="card-title">Adopciones solicitadas</h5>
+          <ul class="list-group list-group-flush mt-3" *ngFor="let adopcion of adopciones">
+            <li class="list-group-item list-group-item-info">{{adopcion.nombre}}</li>
+          </ul>
         </div>
       </div>
       <div class="card">

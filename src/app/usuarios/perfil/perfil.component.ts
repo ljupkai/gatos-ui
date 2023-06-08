@@ -19,6 +19,7 @@ import { EditarPerfilComponent } from '../editar-perfil/editar-perfil.component'
 export class PerfilComponent implements OnInit {
   usuario!: User;
   favoritos: Gato[] = [];
+  adopciones: Gato[] = [];
 
   constructor(private route: ActivatedRoute, private gatosService: GatosService, private modalService: NgbModal, private modalConfig: NgbModalConfig) {
     modalConfig.backdrop = 'static';
@@ -49,6 +50,12 @@ export class PerfilComponent implements OnInit {
     } else {
       console.log('');
     }
+
+    if (this.usuario._id){
+    this.gatosService.getAdopcionesPorUsuario(this.usuario._id).subscribe({
+      next: (gatos) => (this.adopciones = gatos),
+      error: (error) => (console.log(error))
+    })}
   }
 
   abrirModal(content: string): void {

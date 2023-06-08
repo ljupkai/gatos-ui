@@ -47,10 +47,9 @@ export class GatoDetailComponent implements OnInit {
     if (this.usuario) {
       if (this.usuario._id) {
         if (!this.adopcionSolicitada )
-            console.log('se puede solicitar')
-            this.adopcionSolicitada = true;
-
-      //   this.gatoService.solicitarAdopcion(this.gato._id, this.usuario._id).subscribe();}
+        console.log('se puede solicitar')
+        this.gatoService.solicitarAdopcion(this.gato._id, this.usuario._id).subscribe();
+        this.adopcionSolicitada = true;
       }
     }
   }

@@ -39,4 +39,8 @@ export class GatosService {
     const usuarioId = { usuario: idUser}
     return this.http.post<Gato>(`${this.baseUrl}gato/adopcion/${idGato}`, usuarioId).pipe(map((res) => res))
   }
+
+  getAdopcionesPorUsuario(idUser: string): Observable<Gato[]> {
+    return this.http.get<any>(`${this.baseUrl}gato/${idUser}/adopcion`).pipe(map(res => res.resultado))
+  }
 }
