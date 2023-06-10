@@ -37,6 +37,7 @@ export class GestionAdopcionesComponent implements OnInit {
               return {
                 userId: adopcion.usuario?._id,
                 userName: adopcion.usuario?.nombre,
+                adopcionId: adopcion._id,
                 gatoName: gato.nombre,
                 gatoId: gato._id,
                 date: adopcion.date,
@@ -82,6 +83,10 @@ export class GestionAdopcionesComponent implements OnInit {
         console.log('Modal dismissed:', reason);;
       },
     );
+  }
 
+  actualizarStatus(gatoId: string, adopcionId: string, event: any) {
+    let status = event.target.value;
+    this.gatoService.cambiarStatus(gatoId, adopcionId, status).subscribe();
   }
 }

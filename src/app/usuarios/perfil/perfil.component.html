@@ -68,11 +68,11 @@
       </div>
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Encuesta para adopción</h5>
+          <h5 class="card-title mb-3">Encuesta para adopción</h5>
           <!-- <ng-container *ngIf="usuario.nombreCompleto ; else elseBlock"> -->
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCard"
+          <button class="btn btn-primary me-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCard"
             aria-expanded="false" aria-controls="collapseCard">Ver las respuestas</button>
-          <button class="btn btn-light">Cambiar las respuestas</button>
+          <!-- <button class="btn btn-light">Cambiar las respuestas</button> -->
           <div class="collapse mt-3" id="collapseCard">
             <p><strong>Nombre completo:</strong> {{usuario.nombreCompleto }}</p>
             <p><strong>Dirección:</strong> {{usuario.direccion }}</p>
@@ -103,7 +103,7 @@
           </div>
           <!-- </ng-container> -->
           <!-- <ng-template #elseBlock> -->
-          <button class="btn btn-warning" (click)="abrirModal('encuesta')">Rellenar la
+          <button class="btn btn-outline-primary" (click)="abrirModal('encuesta')">Rellenar la
             encuesta</button>
           <!-- </ng-template> -->
         </div>

@@ -27,15 +27,12 @@ export interface UserRequest {
   id: number;
   nombre: string;
   correo: string;
-  // avatar: string;
-  // lat: number;
-  // lng: number;
+
 }
 export interface UserLogin {
   email: string;
   password: string;
-  // lat?: number;
-  // lng?: number;
+
 }
 
 export interface ResponseUser {

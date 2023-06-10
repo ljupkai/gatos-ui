@@ -33,8 +33,7 @@ export class GatosService {
   marcarLike(idGato: string, idUser: string): Observable<User> {
     const payload = {idGato, idUser}
     console.log(payload);
-    return this.http.post(`${this.baseUrl}gato/${idGato}/${idUser}/like`, payload).pipe(map((res: any) => {
-    console.log(res); return res.resultado}))
+    return this.http.post(`${this.baseUrl}gato/${idGato}/${idUser}/like`, payload).pipe(map((res: any) => res))
   }
 
   solicitarAdopcion(idGato: string, idUser: string): Observable<Gato> {
@@ -47,5 +46,11 @@ export class GatosService {
   }
 
   getGatosConUserdata(): Observable<Gato[]> {
-    return this.http.get<any>(`${this.baseUrl}gato/userdata`).pipe(map( (res) => res.resultado ))}
+    return this.http.get<any>(`${this.baseUrl}gato/userdata`).pipe(map( (res) => res.resultado ))
+  }
+
+  cambiarStatus(idGato: string, idAdopcion: string, status: string): Observable<Gato> {
+    const payload = {idGato, idAdopcion, status}
+    return this.http.post<Gato>(`${this.baseUrl}gato/${idGato}/adopciones/${idAdopcion}/${status}`, payload).pipe(map((res: any) => res))
+  }
 }

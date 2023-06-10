@@ -2,7 +2,7 @@
   <h1 class="m-4">Adopciones solicitadas</h1>
 
   <ul class="list-group">
-    <li class="list-group-item bg-light text-center" [class.active]="activeIndex === -1">
+    <li class="list-group-item bg-light text-center">
       <div class="d-flex justify-content-center align-items-center fw-bold">
         <div class="col-3">Usuario</div>
         <div class="col-3">Gato</div>
@@ -14,18 +14,18 @@
       [class.active]="activeIndex === i">
       <div class="d-flex justify-content-center align-items-center p-2">
         <div class="col-3">
-          <a class="btn btn-outline" (click)="open(content, i)">{{adopcion.userName}}</a>
+          <a class="btn btn-outline-secondary col-6" (click)="open(content, i)">{{adopcion.userName}}</a>
         </div>
         <div class="col-3">
-          <a>{{adopcion.gatoName}}</a>
+          <a routerLink="/gatos/{{adopcion.gatoId}}">{{adopcion.gatoName}}</a>
         </div>
         <div class="col-3">{{adopcion.date | date:'mediumDate'}}</div>
         <div class="col-3">
-          <select class="form-select">
+          <select class="form-select" (change)="actualizarStatus(adopcion.gatoId, adopcion.adopcionId, $event)">
             <option value="pending" selected>Pending</option>
             <option value="reservado">Reservado</option>
             <option value="rechazado">Rechazado</option>
-            <option value="aprobado">Aprobado</option>
+            <option value="adoptado">Aprobado</option>
           </select>
         </div>
 
