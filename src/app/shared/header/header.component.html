@@ -1,26 +1,26 @@
 <header
   class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom mx-3">
   <div class="col-md-3 mb-2 mb-md-0">
-    <a routerLink="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+    <a routerLink="/" class="d-inline-flex link-body-emphasis text-decoration-none flex-align-center">
       <img src="assets/images/gato1.png" height="50px">
     </a>
   </div>
 
   <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
     <li><a routerLink="" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact : true}"
-        class="nav-link px-2 home">Home</a></li>
+        class="nav-link px-2 home titulo">Adóptameow</a></li>
     <li><a routerLink="gatos/donar" routerLinkActive="router-link-active" class="nav-link px-2">Donar</a></li>
     <li><a routerLink="/gatos/adoptar" routerLinkActive="router-link-active" class="nav-link px-2">Proceso de
         adopción</a>
     </li>
-    <li><a routerLink="gatos/galeria" routerLinkActive="router-link-active" class="nav-link px-2">Galeria de
+    <!-- <li><a routerLink="gatos/galeria" routerLinkActive="router-link-active" class="nav-link px-2">Galeria de
         adoptados</a>
-    </li>
+    </li> -->
   </ul>
   <div class="col-md-3 text-end">
     <ng-container *ngIf="displayLinks">
       <button class="btn btn-warning me-2" routerLink="usuario/me" routerLinkActive="router-link-active">Mi
-        perfíl</button>
+        perfil</button>
       <button type="button" class="btn btn-outline-warning me-2" (click)="logout()">Logout</button>
     </ng-container>
     <!-- <ng-template #elseBlock> -->

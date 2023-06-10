@@ -1,5 +1,4 @@
-export interface Gato {
-  _id: string;
+export interface GatoBase {
   nombre: string;
   edad: string;
   castrado: Boolean;
@@ -13,6 +12,10 @@ export interface Gato {
   absoluteImageUrl: string[];
   imagenFiles: File[];
   likedBy?: string[];
+}
+
+export interface Gato extends GatoBase {
+  _id: string;
   Adopciones?: Adopciones[];
 }
 
@@ -41,4 +44,16 @@ interface Usuario {
   infoMascotasActuales?: string;
   infoMascotasAnteriores?: string;
   infoVeterinario?: string;
+}
+
+export interface GatoWithUserId extends GatoBase {
+  _id: string;
+  Adopciones?: AdopcionesWithUserId[];
+}
+
+interface AdopcionesWithUserId {
+  _id: string;
+  usuario: string;
+  status: 'pending' | 'reservado' | 'rechazado' | 'adoptado';
+  date: Date;
 }

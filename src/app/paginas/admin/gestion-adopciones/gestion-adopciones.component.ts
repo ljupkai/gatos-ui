@@ -6,11 +6,13 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { User } from 'src/app/auth/interfaces/user';
 import { RouterLink } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-gestion-adopciones',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FormsModule],
   templateUrl: './gestion-adopciones.component.html',
   styleUrls: ['./gestion-adopciones.component.css']
 })

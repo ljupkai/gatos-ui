@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Gato } from '../interfaces/gato';
+import { Gato, GatoBase } from '../interfaces/gato';
 import { map, Observable } from 'rxjs';
 import { GatoResponse } from '../interfaces/responses';
 import { User } from '../auth/interfaces/user';
@@ -22,7 +22,7 @@ export class GatosService {
       pipe(map((res) => res.resultado));
   }
 
-  crearGato(gato: Gato): Observable<Gato>{
+  crearGato(gato: GatoBase): Observable<Gato>{
     return this.http.post<Gato>(`${this.baseUrl}gato`, gato).pipe(map(res => res))
   }
 

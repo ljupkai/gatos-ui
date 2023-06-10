@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { GatosService } from 'src/app/services/gatos.service';
-import { Gato } from 'src/app/interfaces/gato';
+import { Gato, GatoWithUserId } from 'src/app/interfaces/gato';
 import { GatoItemComponent } from '../gato-item/gato-item.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import swal from 'sweetalert2';
@@ -19,7 +19,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 })
 export class GatoDetailComponent implements OnInit {
   icons = { faCheck, faXmark }
-  gato!: Gato;
+  gato!: GatoWithUserId;
   usuario!: User;
   adopcionSolicitada: boolean = false;
 
@@ -33,14 +33,19 @@ export class GatoDetailComponent implements OnInit {
       this.usuarioService.getUser('me').subscribe({
         next: (usuario) => {
           this.usuario = usuario
-          this.adopcionSolicitada = this.gato.Adopciones?.some((adopcion) => adopcion.usuario._id === this.usuario._id) || false;
+          console.log(usuario)
+          this.adopcionSolicitada = this.gato.Adopciones?.some((adopcion) => adopcion.usuario === this.usuario._id) || false;
+          console.log(this.adopcionSolicitada)
         }
       })
       }
 
+
+
   }
 
   adoptar() {
+    console.log(this.adopcionSolicitada)
     if (!this.usuario) {
       this.router.navigate(['/auth/login']);
     }

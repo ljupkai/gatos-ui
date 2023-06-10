@@ -48,7 +48,7 @@ export class PerfilComponent implements OnInit {
 
     if (this.usuario._id){
     this.gatosService.getAdopcionesPorUsuario(this.usuario._id).subscribe({
-      next: (gatos) => {this.adopciones = gatos; console.log(this.adopciones)},
+      next: (gatos) => {this.adopciones = gatos;},
       error: (error) => (console.log(error))
     })}
 

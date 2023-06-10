@@ -21,8 +21,9 @@
         </div>
         <div class="col-3">{{adopcion.date | date:'mediumDate'}}</div>
         <div class="col-3">
-          <select class="form-select" (change)="actualizarStatus(adopcion.gatoId, adopcion.adopcionId, $event)">
-            <option value="pending" selected>Pending</option>
+          <select class="form-select" [(ngModel)]="adopcion.status"
+            (change)="actualizarStatus(adopcion.gatoId, adopcion.adopcionId, $event)">
+            <option value="pending">Pending</option>
             <option value="reservado">Reservado</option>
             <option value="rechazado">Rechazado</option>
             <option value="adoptado">Aprobado</option>

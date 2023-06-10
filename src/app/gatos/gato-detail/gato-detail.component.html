@@ -1,75 +1,102 @@
-<!-- <div class="mt-4" *ngIf="gato"> -->
-
 <div class="mt-4">
   <div class="container">
-    <h1>Conoce a {{ gato.nombre | uppercase}}</h1>
+    <h1>Conoce a {{ gato.nombre | uppercase }}</h1>
     <hr>
 
     <!-- Carousel -->
-
-    <!-- Cat Information -->
     <div class="row">
-
       <div class="col-md-6">
-        <div id="cat-gallery" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <li data-bs-target="#cat-gallery" *ngFor="let img of gato.imagen; let i = index" [attr.data-bs-slide-to]="i"
-              [class.active]="i === 0"></li>
-          </ol>
+        <div class="blob-container">
+          <!-- <div class="blob"></div> -->
+          <div id="cat-gallery" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-bs-target="#cat-gallery" *ngFor="let img of gato.imagen; let i = index"
+                [attr.data-bs-slide-to]="i" [class.active]="i === 0"></li>
+            </ol>
 
-          <div class="carousel-inner">
-            <div class="carousel-item" *ngFor="let img of gato.imagen; let i = index" [class.active]="i === 0">
-              <div class="carousel-image-container">
-
-                <img [src]="img" alt="Cat Image" class="carousel-image" height="300">
+            <div class="carousel-inner">
+              <div class="carousel-item" *ngFor="let img of gato.imagen; let i = index" [class.active]="i === 0">
+                <div class="carousel-image-container">
+                  <img [src]="img" alt="Cat Image" class="carousel-image" height="300">
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Carousel Controls -->
-          <a class="carousel-control-prev" href="#cat-gallery" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#cat-gallery" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </a>
+            <!-- Carousel Controls -->
+            <a class="carousel-control-prev" href="#cat-gallery" role="button" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#cat-gallery" role="button" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- <div class="col-md-3">
-        <p><strong>Spayed:</strong> Yes</p>
-        <p><strong>Personality:</strong> Se lleva bien con otros gatos</p>
-      </div> -->
       <div class="col-md-6">
-        <p>
-          {{gato.descripcion}}
-        </p>
+        <p>{{ gato.descripcion }}</p>
         <p>Edad: {{ gato.edad }}</p>
         <p>Castrado:
           <fa-icon *ngIf="gato.castrado" [icon]="icons.faCheck"></fa-icon>
           <fa-icon *ngIf="!gato.castrado" [icon]="icons.faXmark"></fa-icon>
         </p>
-        <p>Color: {{gato.color}}</p>
+        <p>Color: {{ gato.color }}</p>
         <p *ngIf="gato.personalidad[0] === 'solo'; else elseBlock">No se lleva bien con otros animales</p>
         <ng-template #elseBlock>
-          <p>Se lleva bien con {{gato.personalidad[0]}}</p>
+          <p>Se lleva bien con {{ gato.personalidad[0] }}</p>
         </ng-template>
 
         <button class="btn btn-primary" [disabled]="adopcionSolicitada" (click)="adoptar()">¡Adopta a
-          {{gato.nombre}}!</button>
-        <!-- <button class="btn btn-info">Añadir a favoritos</button> -->
-
+          {{ gato.nombre }}!</button>
       </div>
     </div>
-
   </div>
+
   <div class="mt-3">
-    <button type="button" class="btn btn-info m-4" (click)="goBack()">
-      Go back
-    </button>
+    <button type="button" class="btn btn-info m-4" (click)="goBack()">Go back</button>
   </div>
+</div>
 
-  <!-- [swal]="{icon: 'success', title:'¡Has solicitado la adopción de '+gato.nombre+'!', text:'Te contactarémos pronto...'}" -->
+<svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" class="background-blob">
+  <defs>
+    <clipPath id="a">
+      <path fill="currentColor"
+        d="M822.5 605Q710 710 605 785t-222.5 12.5q-117.5-62.5-171-180t-50-285Q165 165 332.5 143t338-3Q841 159 888 329.5T822.5 605Z" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#a)">
+    <path fill="#444cf7"
+      d="M822.5 605Q710 710 605 785t-222.5 12.5q-117.5-62.5-171-180t-50-285Q165 165 332.5 143t338-3Q841 159 888 329.5T822.5 605Z"
+      opacity="0.2" />
+  </g>
+</svg>
+
+<svg class="background-blob2" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="a">
+      <path fill="currentColor"
+        d="M863.5 620Q786 740 671 778.5t-241 50Q304 840 242 728t-86-237q-24-125 69.5-214.5t225-166q131.5-76.5 272 4t179.5 233Q941 500 863.5 620Z" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#a)">
+    <path fill="#444cf7"
+      d="M863.5 620Q786 740 671 778.5t-241 50Q304 840 242 728t-86-237q-24-125 69.5-214.5t225-166q131.5-76.5 272 4t179.5 233Q941 500 863.5 620Z"
+      opacity="0.1" />
+  </g>
+</svg>
+<svg class="background-blob3" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="a">
+      <path fill="currentColor"
+        d="M854 603q-70 103-147 199.5t-213 115Q358 936 273.5 831T169 613q-20-113-17.5-239T261 170.5Q368 93 485.5 138T739 205q136 22 160.5 158.5T854 603Z" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#a)">
+    <path fill="#444cf7"
+      d="M854 603q-70 103-147 199.5t-213 115Q358 936 273.5 831T169 613q-20-113-17.5-239T261 170.5Q368 93 485.5 138T739 205q136 22 160.5 158.5T854 603Z"
+      opacity="0.1" />
+  </g>
+</svg>

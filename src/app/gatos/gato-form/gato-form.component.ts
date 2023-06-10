@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators, NonNullableFormBuilder, Form, FormArray, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GatosService } from 'src/app/services/gatos.service';
-import { Gato } from 'src/app/interfaces/gato';
+import { Gato, GatoBase } from 'src/app/interfaces/gato';
 import { map, tap } from 'rxjs';
 
 @Component({
@@ -15,7 +15,7 @@ import { map, tap } from 'rxjs';
 })
 export class GatoFormComponent implements OnInit {
   gatoForm!: FormGroup;
-  nuevoGato!: Gato;
+  nuevoGato!: GatoBase;
   saved = false;
 
   nombre!: FormControl<string>;
@@ -114,6 +114,7 @@ export class GatoFormComponent implements OnInit {
 
       this.gatoService.crearGato(this.nuevoGato).pipe(map((gato) => {
         this.nuevoGato = gato;
+        this.saved = true;
       }), tap(() => this.redirectHome())).subscribe({ error: (error) => console.log(error),
       })
     }
