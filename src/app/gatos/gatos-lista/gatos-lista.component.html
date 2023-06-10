@@ -17,16 +17,16 @@
   <div class="collapse" id="collapseExample">
     <div class="border-top p-3">
       <div class="row d-flex justify-content-end">
-        <div class="col-2 form-check form-switch">
+        <div class="col-4 form-check form-switch">
           <label class="form-check-label" for="flexSwitchCheckDefault">Mostrar solo no reservados</label>
           <input class="form-check-input" (click)="setNoReservados()" type="checkbox" role="switch"
             id="flexSwitchCheckDefault">
         </div>
-        <form class="col-3">
+        <form class="col-4">
           <input type="text" class="form-control" name="search" placeholder="Introduce un nombre, color etc."
             [(ngModel)]="filterSearch" />
         </form>
-        <div class="col-3">
+        <div class="col-4">
           <select class="form-select" [(ngModel)]="filterPersonalidad" name="personalidad">
             <option value='' selected>Elige si se lleva bien con:</option>
             <option value="solo">Nadie - solo en casa</option>

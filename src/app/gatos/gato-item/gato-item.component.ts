@@ -4,7 +4,7 @@ import { Gato } from "../../interfaces/gato";
 import { RouterModule } from "@angular/router";
 import { User } from "src/app/auth/interfaces/user";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeart2 } from "@fortawesome/free-regular-svg-icons";
 import { GatosService } from "src/app/services/gatos.service";
 
@@ -19,7 +19,7 @@ export class GatoItemComponent {
   @Input() gato!: Gato;
   @Input() usuarioId?: string;
 
-  icons = { faHeart, faHeart2 };
+  icons = { faHeart, faHeart2, faBookmark };
 
   constructor(private gatoService: GatosService) {}
 

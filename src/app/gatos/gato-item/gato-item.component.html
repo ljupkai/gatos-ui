@@ -11,17 +11,18 @@
     <div class="card-body">
       <div class="card-text mb-3 row">
         <h4 class="col">{{gato.nombre }}</h4>
+        <fa-icon class="col bookmark" *ngIf="gato.reservado" [icon]='icons.faBookmark'></fa-icon>
         <div class="col text-end like-icon"> {{gato.numLikes}}
-          <fa-icon *ngIf="isLiked()" [icon]='icons.faHeart' (click)="toggleLike()"></fa-icon>
-          <fa-icon *ngIf="!isLiked()" [icon]='icons.faHeart2' (click)="toggleLike()">
+          <fa-icon class="heart" *ngIf="isLiked()" [icon]='icons.faHeart' (click)="toggleLike()"></fa-icon>
+          <fa-icon class="heart" *ngIf="!isLiked()" [icon]='icons.faHeart2' (click)="toggleLike()">
           </fa-icon>
         </div>
       </div>
       <div class=" d-flex justify-content-between align-items-center">
         <div class="btn-group">
           <a [routerLink]="['/gatos', gato._id]" type="button"
-            class="btn btn-sm btn-outline-secondary stretched-link">View</a>
-          <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+            class="btn btn-sm btn-outline-secondary stretched-link">Ver más</a>
+
         </div>
         <small class="text-body-secondary"></small>
       </div>

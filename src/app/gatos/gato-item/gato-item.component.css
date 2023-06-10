@@ -2,7 +2,11 @@ img:hover {
   cursor: pointer;
 }
 
-fa-icon {
+fa-icon.heart {
   color:crimson;
   cursor: pointer;
+}
+
+fa-icon.bookmark {
+  color: blue;
 }

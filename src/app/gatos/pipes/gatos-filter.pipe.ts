@@ -26,7 +26,7 @@ export class GatosFilterPipe implements PipeTransform {
     }
 
     return showNoReservados
-      ? gatosFiltrados.filter((gato) => !gato.castrado)
+      ? gatosFiltrados.filter((gato) => !gato.reservado)
       : gatosFiltrados;
   }
 }
