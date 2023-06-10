@@ -11,7 +11,7 @@ import { User, UserLogin } from "../auth/interfaces/user";
 export class AuthService {
   logged = false;
   loginChange$ = new ReplaySubject<boolean>(1);
-  usuarioActualRoles!: string[];
+  usuarioActualRoles?: string[];
 
   constructor(private readonly http: HttpClient) {}
 
@@ -67,8 +67,8 @@ export class AuthService {
     this.loginChange$.next(logged);
   }
 
-  hasAccess(): boolean {
-    return this.usuarioActualRoles.includes('admin');
+  hasAccess(): string[] {
+    return this.usuarioActualRoles || [];
   }
 
 

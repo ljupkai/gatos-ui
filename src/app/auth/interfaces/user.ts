@@ -5,6 +5,7 @@ export interface User {
   password?: string;
   favoritos?: string[];
   imagenes?: string[];
+  roles?: string[];
   nombreCompleto?: string;
   direccion?: string;
   telefono?: string;

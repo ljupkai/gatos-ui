@@ -5,7 +5,7 @@ import { gatosResolver } from "../resolvers/gatos-resolver";
 import { loginActivateGuard } from "../guards/login-activate.guard";
 import { leavePageGuard } from "../guards/leave-page.guard";
 import { logoutActivateGuard } from "../guards/logout-activate.guard";
-import { authorizationGuard } from "../guards/admin-guard";
+import { authorizationGuard } from "../guards/authorization-guard";
 
 export const GATOS_ROUTES: Routes = [
   {
@@ -13,6 +13,10 @@ export const GATOS_ROUTES: Routes = [
     canActivate: [authorizationGuard],
     canDeactivate: [leavePageGuard],
     loadComponent: () => import('./gato-form/gato-form.component').then((m) => m.GatoFormComponent)
+  },
+  {
+    path: 'adopciones',
+    loadComponent: () => import("../paginas/admin/gestion-adopciones/gestion-adopciones.component").then((m) => m.GestionAdopcionesComponent)
   },
 
   {

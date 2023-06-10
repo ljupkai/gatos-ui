@@ -25,4 +25,8 @@ export class UsuarioService {
   getFavoritos(id: string): Observable<Gato[]> {
     return this.http.get<Gato[]>(`http://localhost:3000/usuario/${id}/favoritos`).pipe(map(res => res));
   }
+
+  getEncuesta(idUser: string): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/usuario/${idUser}/encuesta`).pipe(map(res => res.resultado));
+  }
 }

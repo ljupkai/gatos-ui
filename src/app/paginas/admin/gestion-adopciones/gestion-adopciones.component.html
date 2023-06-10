@@ -1,0 +1,93 @@
+<div class="container">
+  <h1 class="m-4">Adopciones solicitadas</h1>
+
+  <ul class="list-group">
+    <li class="list-group-item bg-light text-center" [class.active]="activeIndex === -1">
+      <div class="d-flex justify-content-center align-items-center fw-bold">
+        <div class="col-3">Usuario</div>
+        <div class="col-3">Gato</div>
+        <div class="col-3">Fecha solicitud</div>
+        <div class="col-3">Status</div>
+      </div>
+    </li>
+    <li class="list-group-item text-center" *ngFor="let adopcion of adopciones; let i = index"
+      [class.active]="activeIndex === i">
+      <div class="d-flex justify-content-center align-items-center p-2">
+        <div class="col-3">
+          <a class="btn btn-outline" (click)="open(content, i)">{{adopcion.userName}}</a>
+        </div>
+        <div class="col-3">
+          <a>{{adopcion.gatoName}}</a>
+        </div>
+        <div class="col-3">{{adopcion.date | date:'mediumDate'}}</div>
+        <div class="col-3">
+          <select class="form-select">
+            <option value="pending" selected>Pending</option>
+            <option value="reservado">Reservado</option>
+            <option value="rechazado">Rechazado</option>
+            <option value="aprobado">Aprobado</option>
+          </select>
+        </div>
+
+        <!--Encuesta modal -->
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Encuesta de adopción</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+          </div>
+          <div class="modal-body">
+            <ng-container *ngIf="adopcion.nombreCompleto ; else vacio">
+              <p><strong>Nombre completo:</strong> {{adopcion.nombreCompleto }}</p>
+              <p><strong>Dirección:</strong> {{adopcion.direccion }}</p>
+              <p><strong>Teléfono de contacto:</strong> {{adopcion.telefono}}</p>
+              <p><strong>Estás en el proceso de mudanza o tienes planificado mudarte? Qué harías si te mudas donde no se
+                  aceptan mascotas?</strong> </p>
+              <p> {{adopcion.infoMudanza}}</p>
+              <p><strong>Por qué quieres adoptar un gato?</strong></p>
+              <p> {{adopcion.infoPorque}}</p>
+              <p><strong>Quién vive en tu casa? Alguien tiene alergias a gatos?</strong> </p>
+              {{adopcion.infoFamilia}}
+              <p><strong>Cuánto estás preparado para gastar para el gato mensualmente?</strong>
+              </p>
+              <p>{{adopcion.infoCostes}}
+              </p>
+              <p><strong>Se te ocurre alguna razón por la que podrías devolver un gato al refugio?</strong></p>
+              <p>
+                {{adopcion.infoAbandonar}}</p>
+              <p><strong>Dónde va a vivir el gato? solo dentro de la casa, dentro y fuera, fuera</strong>
+                {{adopcion.infoMovimiento}}</p>
+              <p><strong>Estás dispuesto a poner mosquiteras o redes para proteger todas las ventanas y puertas antes de
+                  adoptar al gato?</strong></p>
+              <p> {{adopcion.infoProteccion}}</p>
+              <p><strong>Cuál es tu experiencia con animales? Has tenido un gato?</strong>
+              </p>
+              <p> {{adopcion.infoExperiencia}}.
+              </p>
+              <p><strong>Ante una inadaptación o problema de comportamiento en el gato que adoptes, ¿qué
+                  harías?</strong></p>
+              <p>
+                {{adopcion.infoProblemas}}</p>
+              <p><strong>Háblanos un poco sobre las mascotas que tienes ahora; ¿todas las vacunas puestas?</strong></p>
+              <p>
+                {{adopcion.infoMascotasActuales}}</p>
+              <p><strong>Háblanos sobre tus mascotas que has tenido anteriormente. ¿Qué pasó al final?</strong></p>
+              <p>
+                {{adopcion.infoMascotasAnteriores}}</p>
+              <p><strong>¿Quién es tu veterinario? (Le vamos a contactar para comprobar los datos)</strong></p>
+              <p>
+                {{adopcion.infoVeterinario}}</p>
+            </ng-container>
+            <ng-template #vacio>
+              <div>No hay datos</div>
+            </ng-template>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+          </div>
+        </ng-template>
+
+
+      </div>
+    </li>
+  </ul>
+</div>

@@ -33,7 +33,7 @@ export class GatoDetailComponent implements OnInit {
       this.usuarioService.getUser('me').subscribe({
         next: (usuario) => {
           this.usuario = usuario
-          this.adopcionSolicitada = this.gato.Adopciones?.some((adopcion) => adopcion.usuario === this.usuario._id) || false;
+          this.adopcionSolicitada = this.gato.Adopciones?.some((adopcion) => adopcion.usuario._id === this.usuario._id) || false;
         }
       })
       }

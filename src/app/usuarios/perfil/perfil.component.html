@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <div class="card bg-light">
+      <div class="card bg-light mb-3">
         <div class="card-body">
           <h5 class="card-title">Información Personal</h5>
           <p class="card-text">Nombre: {{usuario.nombre}}</p>
@@ -10,6 +10,17 @@
           <button class="btn btn-primary" (click)="abrirModal('password')">Cambiar Contraseña</button>
         </div>
       </div>
+      <ng-container *ngIf="isAdmin">
+        <div class="card border-danger">
+          <div class="card-body">
+            <h5 class="card-title mb-3">Administración</h5>
+            <div class="card-text mb-3"><a routerLink="/gatos/add" routerLinkActive="router-link-active"
+                class="btn btn-danger d-block">Anadir Gato</a></div>
+            <div class="card-text"><a routerLink="/gatos/adopciones" routerLinkActive="router-link-active"
+                class="btn btn-secondary d-block">Gestionar Adopciones</a></div>
+          </div>
+        </div>
+      </ng-container>
     </div>
     <div class="col-md-9">
       <div class="card mb-3">
@@ -22,17 +33,37 @@
           </ng-container>
           <ng-template #blockVacio>
             <p>Aquí no hay nada...</p>
-            <img src="../../../assets/images/cat-empty.png" alt="empty">
+            <img class="img-fluid" src="../../../assets/images/cat-empty.png" alt="empty">
           </ng-template>
         </div>
       </div>
       <div class="card mb-4">
         <div class="card-body">
 
-          <h5 class="card-title">Adopciones solicitadas</h5>
-          <ul class="list-group list-group-flush mt-3" *ngFor="let adopcion of adopciones">
-            <li class="list-group-item list-group-item-info">{{adopcion.nombre}}</li>
-          </ul>
+          <h5 class="card-title mb-3">Adopciones solicitadas</h5>
+          <ng-container *ngIf="adopciones.length > 0" ; else vacio>
+            <div class="row text-center mt-3 ms-1">
+              <div class="col-3">Gato</div>
+              <div class="col-4">Fecha solicitud</div>
+              <div class="col-3">Status</div>
+              <div class="col-2"></div>
+            </div>
+            <ul class="list-group list-group-flush mt-3" *ngFor="let adopcion of adopciones">
+              <li class="list-group-item list-group-item-info ">
+                <div class="row text-center ">
+                  <div class="col-3 pb-0">{{adopcion.nombre}}</div>
+                  <ng-container *ngFor="let item of adopcion.Adopciones">
+                    <ng-container *ngIf="item.usuario._id === usuario._id">
+                      <div class="col-4"> {{ item.date | date:'mediumDate' }}</div>
+                      <div class="col-3"> {{ item.status }}</div>
+                      <div class="col-2"><a class="btn btn-light btn-sm" routerLink="/gatos/{{adopcion._id}}">Ver</a>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                </div>
+              </li>
+            </ul>
+          </ng-container>
         </div>
       </div>
       <div class="card">

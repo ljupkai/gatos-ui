@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { User } from 'src/app/auth/interfaces/user';
 import { GatosService } from 'src/app/services/gatos.service';
 import { Gato } from 'src/app/interfaces/gato';
@@ -13,7 +13,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [CommonModule, RouterModule, GatoItemComponent],
+  imports: [CommonModule, RouterModule, GatoItemComponent, RouterLink],
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
@@ -21,6 +21,7 @@ export class PerfilComponent implements OnInit {
   usuario!: User;
   favoritos: Gato[] = [];
   adopciones: Gato[] = [];
+  isAdmin?: boolean;
 
   constructor(private router: Router,
     private route: ActivatedRoute, private gatosService: GatosService, private modalService: NgbModal, private modalConfig: NgbModalConfig, private usuarioService: UsuarioService) {
@@ -29,7 +30,13 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.route.data.subscribe(({user}) => this.usuario = user)
+
+    if (this.usuario) {
+      this.isAdmin = this.usuario.roles?.includes('admin');
+      console.log('admin: ', this.isAdmin)
+    }
 
 
     if (this.usuario._id) {
@@ -41,9 +48,10 @@ export class PerfilComponent implements OnInit {
 
     if (this.usuario._id){
     this.gatosService.getAdopcionesPorUsuario(this.usuario._id).subscribe({
-      next: (gatos) => (this.adopciones = gatos),
+      next: (gatos) => {this.adopciones = gatos; console.log(this.adopciones)},
       error: (error) => (console.log(error))
     })}
+
   }
 
   abrirModal(content: string): void {
@@ -68,10 +76,5 @@ export class PerfilComponent implements OnInit {
       console.log('Modal dismissed:', reason);
     })
   }
-
-
-
-
-
 
 }
