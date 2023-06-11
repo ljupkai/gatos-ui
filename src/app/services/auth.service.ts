@@ -4,6 +4,7 @@ import { Observable, ReplaySubject, catchError, map, of, tap } from "rxjs";
 import { TokenResponse } from "../auth/interfaces/token-response";
 import { RegisterResponse } from "../auth/interfaces/registro-response";
 import { User, UserLogin } from "../auth/interfaces/user";
+import { BASE_URL } from "../shared/url.constant";
 
 @Injectable({
   providedIn: "root",
@@ -17,7 +18,7 @@ export class AuthService {
 
   login(loginData: UserLogin): Observable<any> {
     return this.http
-      .post<TokenResponse>("http://localhost:3000/auth/login", loginData)
+      .post<TokenResponse>( `${BASE_URL}auth/login`, loginData)
       .pipe(
         map((resp) => {
           localStorage.setItem("token", resp.access_token);
@@ -33,13 +34,13 @@ export class AuthService {
 
   register(userInfo: User): Observable<RegisterResponse> {
     return this.http.post<RegisterResponse>(
-      "http://localhost:3000/auth/registro",
+      `${BASE_URL}auth/registro`,
       userInfo
     );
   }
 
   checkToken(): Observable<TokenResponse> {
-    return this.http.get<TokenResponse>("http://localhost:3000/auth/validate");
+    return this.http.get<TokenResponse>(`${BASE_URL}auth/validate`);
   }
 
   logout(): void {
@@ -52,7 +53,7 @@ export class AuthService {
       return of(true);
     }
     return this.http
-      .get<TokenResponse>("http://localhost:3000/auth/validate")
+      .get<TokenResponse>(`${BASE_URL}auth/validate`)
       .pipe(
         map(() => {
           this.setLogged(true);
@@ -72,38 +73,4 @@ export class AuthService {
   }
 
 
-  //   if (this.logged) {
-  //     return of(true);
-  //   }
-  //   return this.http.get<TokenResponse>('http://localhost:3000/auth/validate').pipe(
-  //     map(() => {
-  //       this.setLogged(true);
-  //       return true;
-  //     }),
-  //     catchError((error) => of(false))
-  //   );
-  // }),
-  // catchError((e) => of(false))
-
-  // isLogged(): Observable<boolean> {
-  //   if (!this.logged && !localStorage?.['token']) {
-  //     return of(false);
-  //   } else if (this.logged && localStorage?.['token']) {
-  //     return of(true);
-  //   } else {
-  //     this.http.get<TokenResponse>('http://localhost:3000/auth/validate').subscribe({
-  //       next: () => {
-  //         this.logged = true;
-  //         this.loginChange$.next(true);
-  //         tap(() => of(true));
-  //       },
-  //       error: () => {
-  //         this.logout();
-  //         tap(() => of(false));
-  //       },
-  //     });
-  //   }
-
-  //   return of(false);
-  // }
 }
