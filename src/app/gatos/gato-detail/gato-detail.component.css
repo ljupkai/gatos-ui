@@ -8,13 +8,6 @@
   z-index: -1;
 }
 
-.carousel-image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px; /* Adjust the height as needed */
-
-}
 
 .carousel-image {
   max-width: 100%;
@@ -56,3 +49,11 @@
 
 
 
+
+.carousel-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* Adjust the height as needed */
+
+}
