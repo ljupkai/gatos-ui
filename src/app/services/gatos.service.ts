@@ -32,7 +32,6 @@ export class GatosService {
 
   marcarLike(idGato: string, idUser: string): Observable<User> {
     const payload = {idGato, idUser}
-    console.log(payload);
     return this.http.post(`${BASE_URL}gato/${idGato}/${idUser}/like`, payload).pipe(map((res: any) => res))
   }
 

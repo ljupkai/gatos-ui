@@ -15,7 +15,7 @@ import { Subscription } from "rxjs";
 })
 export class HeaderComponent implements OnInit {
   displayLinks = false;
-  private subscribe!: Subscription;
+  // private subscribe!: Subscription;
 
   constructor(
     private readonly authService: AuthService,
@@ -30,22 +30,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
 
-    // if (localStorage.getItem('token')) {
-    //   this.usuarioService.getUser('me').subscribe({
-    //     next: (usuario) => {
-    //
-    //     }
-    //   })
-    //   }
-
-    this.subscribe = this.authService.isLogged().subscribe({next: (loggedIn) => (loggedIn)});
+    // this.subscribe = this.authService.isLogged().subscribe({next: (loggedIn) => (loggedIn)});
 
   }
 
   logout(): void {
     this.authService.logout();
-    console.log("hola");
     this.router.navigate(["/auth/login"]);
-    this.subscribe.unsubscribe();
+    // this.subscribe.unsubscribe();
     }
 }

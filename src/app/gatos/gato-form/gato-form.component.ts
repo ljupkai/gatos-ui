@@ -100,7 +100,6 @@ export class GatoFormComponent implements OnInit {
 
   onSubmit() {
     if (this.gatoForm.valid) {
-      console.log(this.gatoForm)
       this.nuevoGato = {
         ...this.nuevoGato,
         nombre: this.gatoForm.get('nombre')?.value,

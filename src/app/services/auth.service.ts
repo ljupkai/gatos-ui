@@ -23,7 +23,6 @@ export class AuthService {
         map((resp) => {
           localStorage.setItem("token", resp.access_token);
           this.usuarioActualRoles = resp.roles;
-          console.log(this.usuarioActualRoles)
         }),
         tap(() => {
           this.logged = true;

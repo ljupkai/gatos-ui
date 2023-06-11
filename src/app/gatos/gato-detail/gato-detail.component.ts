@@ -33,9 +33,7 @@ export class GatoDetailComponent implements OnInit {
       this.usuarioService.getUser('me').subscribe({
         next: (usuario) => {
           this.usuario = usuario
-          console.log(usuario)
           this.adopcionSolicitada = this.gato.Adopciones?.some((adopcion) => adopcion.usuario === this.usuario._id) || false;
-          console.log(this.adopcionSolicitada)
         }
       })
       }
@@ -45,14 +43,12 @@ export class GatoDetailComponent implements OnInit {
   }
 
   adoptar() {
-    console.log(this.adopcionSolicitada)
     if (!this.usuario) {
       this.router.navigate(['/auth/login']);
     }
     if (this.usuario) {
       if (this.usuario._id) {
         if (!this.adopcionSolicitada )
-        console.log('se puede solicitar')
         this.gatoService.solicitarAdopcion(this.gato._id, this.usuario._id).subscribe();
         this.adopcionSolicitada = true;
         swal.fire({icon: 'success', title:'¡Has solicitado la adopción de '+this.gato.nombre+'!', text:'Te contactarémos pronto...'})
